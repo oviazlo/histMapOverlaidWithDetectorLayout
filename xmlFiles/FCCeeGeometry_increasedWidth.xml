@@ -1,0 +1,99 @@
+<?xml version="1.0"?>
+<data>
+	<globalProperties>
+	</globalProperties>
+	<VXD_barrel>
+		<nElements>
+			3
+		</nElements>
+		<innerRadius>
+			17, 37, 57
+		</innerRadius>
+		<outerRadius>
+			19, 39, 59
+		</outerRadius>
+		<length>
+			250
+		</length>
+	</VXD_barrel>
+	<VXD_endcaps>
+		<nElements>
+			3
+		</nElements>
+		<innerRadius>
+			24, 34.5, 45
+		</innerRadius>
+		<outerRadius>
+			102, 102, 102
+		</outerRadius>
+		<zLow>
+			159, 229, 299	
+		</zLow>
+		<zHigh>
+			161, 231, 301
+		</zHigh>
+	</VXD_endcaps>
+	<IT_barrel>
+		<nElements>
+			3
+		</nElements>
+		<radius>
+			127, 400, 670
+		</radius>
+		<rWidth>
+			6
+		</rWidth>
+		<halfLength>
+			482, 482, 692
+		</halfLength>
+	</IT_barrel>
+	<IT_endcaps>
+		<nElements>
+			7
+		</nElements>
+		<innerRadius>
+			78, 121, 163, 206, 249, 291, 328
+		</innerRadius>
+		<outerRadius>
+			430, 652, 652, 652, 652, 652, 652
+		</outerRadius>
+		<z>
+			524, 808, 1093, 1377, 1661, 1946, 2190	
+		</z>
+		<zWidth>
+			6
+		</zWidth>
+	</IT_endcaps>
+	<OT_barrel>
+		<nElements>
+			3
+		</nElements>
+		<radius>
+			1000, 1568, 2136
+		</radius>
+		<rWidth>
+			6
+		</rWidth>
+		<halfLength>
+			1264
+		</halfLength>
+	</OT_barrel>
+	<OT_endcaps>
+		<nElements>
+			4
+		</nElements>
+		<innerRadius>
+			718
+		</innerRadius>
+		<outerRadius>
+			2080
+		</outerRadius>
+		<z>
+			1310, 1617, 1883, 2190	
+		</z>
+		<zWidth>
+			6
+		</zWidth>
+	</OT_endcaps>
+
+</data>
