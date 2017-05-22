@@ -7,30 +7,30 @@
 			3
 		</nElements>
 		<innerRadius>
-			17, 37, 57
+			31, 44, 58
 		</innerRadius>
 		<outerRadius>
-			19, 39, 59
+			33, 46, 60
 		</outerRadius>
 		<length>
-			250
+			260
 		</length>
 	</VXD_barrel>
 	<VXD_endcaps>
 		<nElements>
-			3
+			1
 		</nElements>
 		<innerRadius>
-			24, 34.5, 45
+			33
 		</innerRadius>
 		<outerRadius>
-			102, 102, 102
+			102
 		</outerRadius>
 		<zLow>
-			159, 229, 299	
+			160	
 		</zLow>
 		<zHigh>
-			161, 231, 301
+			296
 		</zHigh>
 	</VXD_endcaps>
 	<IT_barrel>
@@ -38,10 +38,10 @@
 			3
 		</nElements>
 		<radius>
-			127, 400, 670
+			127, 340, 554
 		</radius>
 		<rWidth>
-			6
+			1.75
 		</rWidth>
 		<halfLength>
 			482, 482, 692
@@ -52,16 +52,16 @@
 			7
 		</nElements>
 		<innerRadius>
-			78, 121, 163, 206, 249, 291, 328
+			72, 99, 131, 164, 197, 231, 250
 		</innerRadius>
 		<outerRadius>
-			430, 652, 652, 652, 652, 652, 652
+			404, 551, 554, 542, 544, 548, 552
 		</outerRadius>
 		<z>
 			524, 808, 1093, 1377, 1661, 1946, 2190	
 		</z>
 		<zWidth>
-			6
+			1.75
 		</zWidth>
 	</IT_endcaps>
 	<OT_barrel>
@@ -69,10 +69,10 @@
 			3
 		</nElements>
 		<radius>
-			1000, 1568, 2136
+			819, 1153, 1486
 		</radius>
 		<rWidth>
-			6
+			1.75
 		</rWidth>
 		<halfLength>
 			1264
@@ -83,17 +83,16 @@
 			4
 		</nElements>
 		<innerRadius>
-			718
+			618
 		</innerRadius>
 		<outerRadius>
-			2080
+			1430
 		</outerRadius>
 		<z>
 			1310, 1617, 1883, 2190	
 		</z>
 		<zWidth>
-			6
+			1.75
 		</zWidth>
 	</OT_endcaps>
-
 </data>

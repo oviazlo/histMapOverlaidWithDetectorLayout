@@ -12,6 +12,7 @@ from ROOT import gROOT
 ###############################################################################
 def getSubdetectorGeometry(inXmlFile,detName):
 	points = []
+	configurations = []
 	import xml.etree.ElementTree as ET
 	tree = ET.parse(inXmlFile)
 	root = tree.getroot()
@@ -24,6 +25,9 @@ def getSubdetectorGeometry(inXmlFile,detName):
 	y2 = []
 	x1 = []
 	x2 = []
+
+	if len(root.findall(detName)) == 0:
+		print ("[ERROR]\tNo detector with name <%s> is found in xml-file <%s>" % (detName, inXmlFile))
 
 	for iDir in root.findall(detName):
          	if iDir.find('nElements') is None:
@@ -109,16 +113,20 @@ def getSubdetectorGeometry(inXmlFile,detName):
 			for i in range(0,nElements):
 				iPoint = points[i]
 				points.append([-iPoint[0],iPoint[1],iPoint[2],iPoint[3],iPoint[4],iPoint[5]])
+         	if iDir.find('fillStyle') is not None:
+			configurations.append(int(iDir.find('fillStyle').text))
 
 	#  print (y1)
 	#  print (y2)
 	#  print (x1)
 	#  print (x2)
-	#  print (points)
-	return points
+	print ("%s:" % (detName))
+	print (points)
+	return [points, configurations]
 ###############################################################################
 ###############################################################################
-def getGraph(points):
+def getGraph(inArr):
+	points = inArr[0]
 	gr = TGraphAsymmErrors(
 		len(points),
 		array("d", [ x[0] for x in points ]),
@@ -127,6 +135,9 @@ def getGraph(points):
 		array("d", [ x[3] for x in points ]),
 		array("d", [ x[4] for x in points ]),
 		array("d", [ x[5] for x in points ]))
+	configurations = inArr[1]
+	if len(configurations)!=0:
+		gr.SetFillStyle(configurations[0])
 	return gr
 
 ###############################################################################
@@ -144,35 +155,40 @@ def getDetector(inXmlFile, subDetectorsToDraw):
 ###############################################################################
 
 tracker = ["VXD_barrel", "VXD_endcaps", "IT_barrel", "IT_endcaps", "OT_barrel", "OT_endcaps"]
-#  FCCee_tracker = getDetector("FCCeeGeometry_increasedWidth.xml",tracker)
-#  CLIC_tracker = getDetector("CLICGeometry_increasedWidth.xml",tracker)
-FCCee_tracker = getDetector("FCCeeGeometry.xml",tracker)
-CLIC_tracker = getDetector("CLICGeometry.xml",tracker)
+calorimeter = ["ECAL_barrel", "ECAL_endcaps", "HCAL_barrel", "HCAL_endcaps_part1", "HCAL_endcaps_part2"]
+afterCalo = ["Vactank", "Coil", "Yoke_barrel", "Yoke_endcaps"]
 
-c1 = TCanvas( 'c1', 'A Simple Graph Example', 0, 0, 1800, 900 )
+FCCee_tracker = getDetector("xmlFiles/FCCeeTracker_increasedWidth.xml",tracker)
+CLIC_tracker = getDetector("xmlFiles/CLICTracker_increasedWidth.xml",tracker)
+#  FCCee_tracker = getDetector("xmlFiles/FCCeeTracker.xml",tracker)
+#  CLIC_tracker = getDetector("xmlFiles/CLICTracker.xml",tracker)
+CLIC_calorimeter = getDetector("xmlFiles/CLICCalorimeter.xml",calorimeter)
+FCCee_calorimeter = getDetector("xmlFiles/FCCeeCalorimeter.xml",calorimeter)
+CLIC_afterCalo = getDetector("xmlFiles/CLIC_afterCalo.xml",afterCalo)
+FCCee_afterCalo = getDetector("xmlFiles/FCCee_afterCalo.xml",afterCalo)
+
+c1 = TCanvas( 'c1', 'A Simple Graph Example', 0, 0, 1000, 1000 )
 #  myFrame = c1.DrawFrame(-2250,-50,2250,2200)
-myFrame = c1.DrawFrame(-10,-10,1000,700)
+myFrame = c1.DrawFrame(-10,-10,5800,6500)
 myFrame.GetXaxis().SetLabelSize(0.03)
 myFrame.GetXaxis().SetTitle("Z [mm]")
 myFrame.GetYaxis().SetTitle("Y [mm]")
 
-#  firstOneToDraw = CLIC_tracker
-#  secondOneToDraw = FCCee_tracker
+CLIC_detector = [CLIC_tracker, CLIC_calorimeter, CLIC_afterCalo]
+#  CLIC_detector = []
+FCCee_detector = []
+#  FCCee_detector = [FCCee_tracker, FCCee_calorimeter, FCCee_afterCalo]
 
-firstOneToDraw = CLIC_tracker
-#  firstOneToDraw = FCCee_tracker
-secondOneToDraw = []
-
-for i in range(0,len(firstOneToDraw)):
-	firstOneToDraw[i].SetFillColor(2)
-	if i==0:
-		firstOneToDraw[i].Draw("P2")
-	else:
-		firstOneToDraw[i].Draw("P2 same")
-if secondOneToDraw != []:
-	for i in range(0,len(secondOneToDraw)):
-		secondOneToDraw[i].SetFillColor(1)
-		secondOneToDraw[i].Draw("P2 same")
+if CLIC_detector != []:
+	for iSubDet in CLIC_detector:
+		for i in range(0,len(iSubDet)):
+			iSubDet[i].SetFillColor(2)
+			iSubDet[i].Draw("P2 same")
+if FCCee_detector != []:
+	for iSubDet in FCCee_detector:
+		for i in range(0,len(iSubDet)):
+			iSubDet[i].SetFillColor(1)
+			iSubDet[i].Draw("P2 same")
 
 c1.SaveAs("geometryComparison.png")
 c1.SaveAs("geometryComparison.eps")

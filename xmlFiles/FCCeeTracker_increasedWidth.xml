@@ -41,7 +41,7 @@
 			127, 400, 670
 		</radius>
 		<rWidth>
-			1.75
+			6
 		</rWidth>
 		<halfLength>
 			482, 482, 692
@@ -55,13 +55,13 @@
 			78, 121, 163, 206, 249, 291, 328
 		</innerRadius>
 		<outerRadius>
-			430, 652, 652, 652, 652, 652, 652
+			460, 652, 652, 652, 652, 652, 652
 		</outerRadius>
 		<z>
 			524, 808, 1093, 1377, 1661, 1946, 2190	
 		</z>
 		<zWidth>
-			1.75
+			6
 		</zWidth>
 	</IT_endcaps>
 	<OT_barrel>
@@ -72,7 +72,7 @@
 			1000, 1568, 2136
 		</radius>
 		<rWidth>
-			1.75
+			6
 		</rWidth>
 		<halfLength>
 			1264
@@ -92,7 +92,7 @@
 			1310, 1617, 1883, 2190	
 		</z>
 		<zWidth>
-			1.75
+			6
 		</zWidth>
 	</OT_endcaps>
 
