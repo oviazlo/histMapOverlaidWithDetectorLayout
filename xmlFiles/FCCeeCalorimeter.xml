@@ -61,7 +61,7 @@
 			1
 		</nElements>
 		<innerRadius>
-			2400
+			2380
 		</innerRadius>
 		<outerRadius>
 			3566
@@ -70,7 +70,7 @@
 			2360
 		</zLow>
 		<zHigh>
-			3526
+			3705
 		</zHigh>
 		<fillStyle>
 			3011
@@ -84,13 +84,13 @@
 			250
 		</innerRadius>
 		<outerRadius>
-			2400
+			2380
 		</outerRadius>
 		<zLow>
 			2539
 		</zLow>
 		<zHigh>
-			3526
+			3705
 		</zHigh>
 		<fillStyle>
 			3011
