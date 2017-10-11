@@ -120,8 +120,8 @@ def getSubdetectorGeometry(inXmlFile,detName):
 	#  print (y2)
 	#  print (x1)
 	#  print (x2)
-	print ("%s:" % (detName))
-	print (points)
+	#  print ("%s:" % (detName))
+	#  print (points)
 	return [points, configurations]
 ###############################################################################
 ###############################################################################
@@ -154,41 +154,57 @@ def getDetector(inXmlFile, subDetectorsToDraw):
 ###############################################################################
 ###############################################################################
 
-tracker = ["VXD_barrel", "VXD_endcaps", "IT_barrel", "IT_endcaps", "OT_barrel", "OT_endcaps"]
-calorimeter = ["ECAL_barrel", "ECAL_endcaps", "HCAL_barrel", "HCAL_endcaps_part1", "HCAL_endcaps_part2"]
-afterCalo = ["Vactank", "Coil", "Yoke_barrel", "Yoke_endcaps"]
+def main(argv):
 
-FCCee_tracker = getDetector("xmlFiles/FCCeeTracker_increasedWidth.xml",tracker)
-CLIC_tracker = getDetector("xmlFiles/CLICTracker_increasedWidth.xml",tracker)
-#  FCCee_tracker = getDetector("xmlFiles/FCCeeTracker.xml",tracker)
-#  CLIC_tracker = getDetector("xmlFiles/CLICTracker.xml",tracker)
-CLIC_calorimeter = getDetector("xmlFiles/CLICCalorimeter.xml",calorimeter)
-FCCee_calorimeter = getDetector("xmlFiles/FCCeeCalorimeter.xml",calorimeter)
-CLIC_afterCalo = getDetector("xmlFiles/CLIC_afterCalo.xml",afterCalo)
-FCCee_afterCalo = getDetector("xmlFiles/FCCee_afterCalo.xml",afterCalo)
+	tracker = ["VXD_barrel", "VXD_endcaps", "IT_barrel", "IT_endcaps", "OT_barrel", "OT_endcaps"]
+	calorimeter = ["ECAL_barrel", "ECAL_endcaps", "HCAL_barrel", "HCAL_endcaps_part1", "HCAL_endcaps_part2"]
+	afterCalo = ["Vactank", "Coil", "Yoke_barrel", "Yoke_endcaps"]
 
-c1 = TCanvas( 'c1', 'A Simple Graph Example', 0, 0, 1000, 1000 )
-#  myFrame = c1.DrawFrame(-2250,-50,2250,2200)
-myFrame = c1.DrawFrame(-10,-10,5800,6500)
-myFrame.GetXaxis().SetLabelSize(0.03)
-myFrame.GetXaxis().SetTitle("Z [mm]")
-myFrame.GetYaxis().SetTitle("Y [mm]")
+	FCCee_tracker = getDetector("xmlFiles/FCCeeTracker_increasedWidth_v2.xml",tracker)
+	CLIC_tracker = getDetector("xmlFiles/CLICTracker_increasedWidth_v2.xml",tracker)
+	#  FCCee_tracker = getDetector("xmlFiles/FCCeeTracker.xml",tracker)
+	#  CLIC_tracker = getDetector("xmlFiles/CLICTracker.xml",tracker)
+	CLIC_calorimeter = getDetector("xmlFiles/CLICCalorimeter.xml",calorimeter)
+	FCCee_calorimeter = getDetector("xmlFiles/FCCeeCalorimeter.xml",calorimeter)
+	CLIC_afterCalo = getDetector("xmlFiles/CLIC_afterCalo.xml",afterCalo)
+	FCCee_afterCalo = getDetector("xmlFiles/FCCee_afterCalo.xml",afterCalo)
 
-CLIC_detector = [CLIC_tracker, CLIC_calorimeter, CLIC_afterCalo]
-#  CLIC_detector = []
-FCCee_detector = []
-#  FCCee_detector = [FCCee_tracker, FCCee_calorimeter, FCCee_afterCalo]
+	c1 = TCanvas( 'c1', 'A Simple Graph Example', 0, 0, 1130, 1130 )
+	#  myFrame = c1.DrawFrame(-2250,-50,2250,2200)
+	#  myFrame = c1.DrawFrame(-10,-10,2500,2500)
+	myFrame = c1.DrawFrame(-10,-10,3620,3620)
+	#  myFrame = c1.DrawFrame(-2420,-10,4220,3620)
+	myFrame.GetXaxis().SetLabelSize(0.03)
+	myFrame.GetXaxis().SetTitle("Z [mm]")
+	myFrame.GetYaxis().SetTitle("Y [mm]")
 
-if CLIC_detector != []:
-	for iSubDet in CLIC_detector:
-		for i in range(0,len(iSubDet)):
-			iSubDet[i].SetFillColor(2)
-			iSubDet[i].Draw("P2 same")
-if FCCee_detector != []:
-	for iSubDet in FCCee_detector:
-		for i in range(0,len(iSubDet)):
-			iSubDet[i].SetFillColor(1)
-			iSubDet[i].Draw("P2 same")
+	CLIC_detector = [CLIC_tracker]
+	FCCee_detector = [FCCee_tracker]
 
-c1.SaveAs("geometryComparison.png")
-c1.SaveAs("geometryComparison.eps")
+	if "CLIC" in argv:
+		CLIC_detector = [CLIC_tracker, CLIC_calorimeter, CLIC_afterCalo]
+	if ("FCCee" in argv) or ("FCC" in argv):
+		FCCee_detector = [FCCee_tracker, FCCee_calorimeter, FCCee_afterCalo]
+
+	if CLIC_detector != []:
+		for iSubDet in CLIC_detector:
+			for i in range(0,len(iSubDet)):
+				iSubDet[i].SetFillColor(15)
+				#  iSubDet[i].SetFillColorAlpha(2, 0.35)
+				iSubDet[i].Draw("P2 same")
+	if FCCee_detector != []:
+		for iSubDet in FCCee_detector:
+			for i in range(0,len(iSubDet)):
+				iSubDet[i].SetFillColor(2)
+				iSubDet[i].Draw("P2 same")
+	if (CLIC_detector==[] and FCCee_detector==[]):
+		print ("[WARNING]\tSpecify detector type!")
+		print ("[INFO]\t\tSupported models: CLIC, FCCee, FCC")
+	else:
+		c1.SaveAs("geometryComparison.eps")
+		c1.SaveAs("geometryComparison.png")
+
+###############################################################################
+###############################################################################
+if __name__ == "__main__":
+	   main(sys.argv[1:])
