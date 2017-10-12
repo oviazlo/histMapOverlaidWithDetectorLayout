@@ -16,7 +16,7 @@
 			2210
 		</halfLength>
 		<fillStyle>
-			3140
+			3003
 		</fillStyle>
 	</ECAL_barrel>
 	<ECAL_endcaps>
@@ -36,7 +36,7 @@
 			2509
 		</zHigh>
 		<fillStyle>
-			3140
+			3003
 		</fillStyle>
 	</ECAL_endcaps>
 	<HCAL_barrel>
@@ -53,7 +53,7 @@
 			2210
 		</halfLength>
 		<fillStyle>
-			3011
+			3012
 		</fillStyle>
 	</HCAL_barrel>
 	<HCAL_endcaps_part1>
@@ -73,7 +73,7 @@
 			3705
 		</zHigh>
 		<fillStyle>
-			3011
+			3012
 		</fillStyle>
 	</HCAL_endcaps_part1>
 	<HCAL_endcaps_part2>
@@ -93,7 +93,7 @@
 			3705
 		</zHigh>
 		<fillStyle>
-			3011
+			3012
 		</fillStyle>
 	</HCAL_endcaps_part2>
 </data>
