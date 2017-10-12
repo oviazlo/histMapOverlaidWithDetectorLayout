@@ -180,7 +180,7 @@ def main(argv):
 	myFrame.GetYaxis().SetTitleOffset(1.5)
 
 	CLIC_detector = []
-	FCCee_detector = [FCCee_tracker]
+	FCCee_detector = [FCCee_tracker, FCCee_calorimeter, FCCee_afterCalo]
 
 	if "CLIC" in argv:
 		CLIC_detector = [CLIC_tracker, CLIC_calorimeter, CLIC_afterCalo]
@@ -209,8 +209,8 @@ def main(argv):
 		print ("[WARNING]\tSpecify detector type!")
 		print ("[INFO]\t\tSupported models: CLIC, FCCee, FCC")
 	else:
-		c1.SaveAs("geometryComparison.eps")
-		c1.SaveAs("geometryComparison.png")
+		c1.SaveAs("histMapWithDetectorOverlay.eps")
+		c1.SaveAs("histMapWithDetectorOverlay.png")
 
 ###############################################################################
 ###############################################################################
